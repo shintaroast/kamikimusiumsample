@@ -1,1 +1,85 @@
 
+@charset "utf-8";
+/* ============================================================================
+ リセットスタイルの補助
+============================================================================ */
+*, ::before, ::after {
+	box-sizing: border-box;
+}
+html, body {
+	font-size: 16px;
+	line-height: 1.5;
+	-webkit-text-size-adjust: 100%;
+}
+@media (max-width: 767px) {
+	html, body {
+		font-size: 14px;
+	}
+}
+html {
+	overflow: auto;
+}
+body {
+	overflow: hidden;
+}
+button {
+	-webkit-appearance: none;
+	cursor: pointer;
+	border: 1px solid #CCCCCC;
+	font-size: 16px;
+}
+input[type="button"], input[type="submit"], input[type="reset"],
+input[type="text"], input[type="tel"],
+input[type="email"], input[type="number"],
+input[type="date"], textarea {
+	-webkit-appearance: none;
+	cursor: pointer;
+	border: 1px solid #CCCCCC;
+	border-radius: 3px;
+	padding: 10px 15px;
+	font-size: 16px;
+	line-height: 1.5;
+	vertical-align: baseline;
+}
+select {
+	-webkit-appearance: none;
+	cursor: pointer;
+	border: 1px solid #CCCCCC;
+	border-radius: 3px;
+	padding: 10px 15px;
+	font-size: 16px;
+	line-height: 1.5;
+	vertical-align: baseline;
+}
+textarea {
+	min-height: 160px;
+	resize: vertical;
+}
+input[type="radio"], input[type="checkbox"] {
+	margin-right: 5px;
+	vertical-align: baseline;
+}
+ul, ol {
+	list-style: none;
+}
+li {
+	display: block;
+}
+a {
+	text-decoration-color: transparent;
+	text-underline-offset: 4px;
+	transition:
+		color .3s,
+		opacity .3s,
+		background-color .3s,
+		text-decoration-color .3s;
+}
+a:hover {
+	text-decoration-color: inherit;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+	vertical-align: bottom;
+}
