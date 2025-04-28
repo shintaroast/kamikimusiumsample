@@ -172,9 +172,9 @@ document.querySelector(".header_hamburger").addEventListener("click", function (
 // メインビジュアルの写真切り替えのアニメーション
 document.addEventListener("DOMContentLoaded", function () {
     const images = [
-        "assets/images/top/mv_photo-pc@2x.jpg",
-        "assets/images/top/mv_photo-pc2@2x.jpg",
-        "assets/images/top/mv_photo-pc3@2x.jpg"
+        "assets/images/home/mv_photo-pc@2x.jpg",
+        "assets/images/home/mv_photo-pc2@2x.jpg",
+        "assets/images/home/mv_photo-pc3@2x.jpg"
     ];
 
     let currentIndex = 0;
