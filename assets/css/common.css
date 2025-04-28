@@ -1,1 +1,658 @@
 
+@charset "utf-8";
+
+  /* コンテナ */
+  .container {
+    width: calc(100% - 10%);
+    margin: auto;
+  }
+  @media(max-width: 900px) {
+    .container {
+      width: (100% -  5%);
+    }
+  }
+
+
+  html, body {
+    font-family: "Noto Sans JP", sans-serif;
+    color: #18181D;
+  }
+  body {
+    width: 100%;
+    min-height: 100vh;
+  }
+  button, input, select, textarea {
+    font-family: "Noto Sans JP", sans-serif;
+  }
+    /* セクションタイトル */
+    .section-title {
+        font-family: 'Noto Serif JP';
+        font-size: 50px;
+        font-weight: bold;
+        letter-spacing: 0.25rem;
+    }
+        @media(max-width:900px) {
+            .section-title {
+            font-size: 32px;
+            }
+        }
+        /* section_arrow */
+        .section_arrow ::before {
+            content: '';
+            border: 1px solid #fff;
+        }
+        .section_arrow ::after {
+            content: '';
+            border: 1px solid #fff;
+        }
+
+        /* ヘッダー */
+        #header {
+            display: flex;
+            position: fixed;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 20;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(180deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.01));
+        }
+        .hdr_logo svg {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        /* 初期は白 */
+        .hdr_logo svg path {
+            fill: #FFF;
+            transition: fill 0.3s ease;
+        }
+
+        /* スクロール時に黒にしたいなら（JSじゃなくても可） */
+        #header.scrolled .hdr_logo svg path {
+            fill: #000;
+        }
+        .header_menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+        }
+        .header_nav-list {
+            display: flex;
+            gap: 40px;
+        }
+        .hdr_nav-itm a {
+            font-family: 'Noto Serif JP';
+            font-weight: 300;
+            color: #FFFFFF;
+        }
+        .header_action-btn {
+            display: none;
+        }
+        /* スクロール時のヘッダーの背景を白に */
+        #header.scrolled {
+            background: #FFFFFF;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* スクロール時のナビゲーションの文字色変更 */
+        #header.scrolled .hdr_nav-itm a {
+            color: #3A3A3A;
+        }
+        /* スクロール時のハンバーガーメニューの色は変えない */
+        #header.scrolled .header_hamburger span,
+        #header.scrolled .header_hamburger p {
+            color: #3A3A3A;
+        }
+        @media(max-width:950px) {
+            #header {
+            height: 80px;
+            justify-content: flex-end;
+            padding: 20px;
+            }
+            .hdr_logo svg {
+            opacity: 1;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            }
+            .header_menu {
+            display: none;
+            }
+            .open .header_menu {
+            display: block;
+            position: fixed;
+            padding: 110px 20px;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            }
+            .header_nav-list {
+            flex-direction: column;
+            gap: 40px;
+            }
+            .open .header_action-btn {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            }
+            .open .header_sns-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            }
+            .open .hdr_logo img {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0s linear 0s;
+            }
+            .header_cta-btn a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: #3A3A3A;
+            background: #FFFFFF;
+            }
+        }
+
+        /* ハンバーガーボタン */
+        .header_hamburger {
+        display: none;
+        }
+        @media(max-width:950px)  {
+        .header_hamburger {
+            display: block;
+            position: relative;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: none;
+            border: none;
+        }
+        .header_hamburger p {
+            position: absolute;
+            color: #FFFFFF;
+            bottom: 0;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out; /* 文字のフェードイン・アウトを0.3秒 */
+        }
+        .header_hamburger span {
+            display: block;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            transition: 0.5s ease-in-out; /* 0.5秒でアイコンのアニメーション */
+            z-index: 20;
+            background: #FFFFFF;
+        }
+        .header_hamburger span:nth-child(1) {
+            top: -20px;
+        }
+        .header_hamburger span:nth-child(2) {
+            top: 0;
+            bottom: 0;
+        }
+        .open .header_hamburger span:nth-child(1) {
+            -webkit-transform: translate(10px) rotate(-135deg);
+            transform: translateY(5px) rotate(-135deg);
+            transition: 0.5s ease-in-out; /* 0.5秒でアイコンのアニメーション */
+        }
+        .open .header_hamburger span:nth-child(2) {
+            -webkit-transform: translate(-10px) rotate(-45deg);
+            transform: translateY(-5px) rotate(-45deg);
+            transition: 0.5s ease-in-out; /* 0.5秒でアイコンのアニメーション */
+        }
+        .open .header_hamburger p {
+            opacity: 1;
+        }
+        }
+
+
+    /* フッター */
+    #footer {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-top: 50px;
+        width: 100%;
+        background: #5F4239;
+    }
+    .footer_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .footer_container-inner {
+        display: flex;
+        font-family: "Noto Serif JP";
+        font-weight: 100;
+        font-size: 1.10rem;
+    }
+    .footer_contents {
+        display: flex;
+        margin: 0 auto;
+    }
+    .footer_nav-list-blk {
+        display: flex;
+    }
+    .footer_address {
+        padding-top: 40px;
+        font-style: normal;
+        letter-spacing: 0.12em;
+        color: #fff;
+        line-height: 1.6;
+    }
+    .footer_address span::before {
+        content: "";
+        display: block;
+        margin-top: 15px;
+    }
+    .line-spacing {
+        display: block;
+        margin-top: 10px;
+    }
+    .footer_nav {
+        display: flex;
+        margin: 0 auto;
+    }
+    .footer_nav-list01 {
+        margin-right: 50px;
+    }
+    .footer_nav-list02 {
+        margin-right: 50px;
+    }
+    .footer_nav-item {
+        padding-bottom: 20px;
+        color: #fff;
+        letter-spacing: 0.12em;
+    }
+    .footer_nav-item a {
+        color: #fff;
+    }
+    .footer_right-block {
+        display: flex;
+        flex-direction: column;
+    }
+    .footer_right-block span {
+        color: #FFFFFF;
+    }
+    .footer_sns {
+        margin-top: 100px;
+    }
+    .footer_sns-list {
+        display: flex;
+        padding-top: 20px;
+        gap: 30px;
+    }
+    .footer_line {
+        display: block;
+        background: #FFFFFF;
+        width: auto;
+        height: 1px;
+        margin: 10px 0;
+    }
+    .access {
+        padding: 10px 20px;
+    }
+    .footer_sns span {
+        color: #fff;
+        letter-spacing: 0.12em;
+    }
+    .footer_txt {
+        margin: auto;
+    }
+    .footer_txt a {
+        font-size: 0.75rem;
+        padding: 10px;
+        color: #fff;
+    }
+    .footer_copyright {
+        font-size: 0.75rem;
+        margin: 10px auto 20px auto;
+        color: #fff;
+    }
+    .footer_container,
+    .footer_container-inner,
+    .footer_contents,
+    .footer_nav,
+    .footer_nav-list-blk,
+    .footer_sns-list,
+    .footer_right-block {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+    }
+    .footer_right-block {
+        -webkit-flex-direction: column;
+                flex-direction: column;
+    }
+    .footer_container-inner {
+        -webkit-flex-direction: column;
+                flex-direction: column;
+    }
+    .footer_nav-list-blk {
+        -webkit-flex-direction: column;
+                flex-direction: column;
+    }
+    @media(max-width:766px) {
+        .footer_container-inner {
+        flex-direction: column;
+        margin: 0 auto;
+        }
+        .footer_information img {
+        width: 170px;
+        }
+        .footer_contents {
+        display: flex;
+        margin-top: 40px;
+        }
+        .footer_nav-list-blk {
+        flex-direction: column;
+        }
+        .footer_nav {
+        margin: 0;
+        }
+        .footer_nav-list01 {
+        margin-right: 30px;
+        }
+        .footer_nav-list02 {
+        margin-right: 30px;
+        }
+        .footer_nav-item {
+        padding: 20px 0;
+        }
+        .footer_right-block {
+        margin-left: 30px;
+        }
+        .footer_sns {
+        margin-top: 30px;
+        }
+    }
+
+
+  .grayscale-iframe {
+    filter: grayscale(1);
+  }
+
+  /* チケットCTAボタン */
+  .ticket_offer {
+    display: block;
+    align-items: center;
+    position: fixed;
+    padding: 10px 20px;
+    right: 50px;
+    bottom: 40px;
+    z-index: 17;
+    width: 560px;
+    height: 120px;
+    border-radius: 20px;
+    background: #5F4239;
+    color: #FFFFFF;
+  }
+  .inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .box-ticket p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.30rem;
+    font-weight: 500;
+  }
+  .separator img {
+    height: 100%;
+  }
+  .box-today {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #FFFFFF;
+  }
+  .title, .time, .memo {
+    display: block;
+    margin: auto;
+    letter-spacing: 0.25rem;
+  }
+  .time {
+    font-size: 1.30rem;
+    font-weight: 500;
+  }
+  /* 引っ込んだとき */
+  .mini .ticket_offer {
+    position: relative;
+  }
+  .mini .inner {
+    position: absolute;
+    top: 35px;
+    left: 50px;
+    justify-content: flex-start;
+  }
+  .mini .separator {
+    display: none;
+  }
+  .mini .box-today {
+    display: none;
+  }
+
+  /* 小さいときに「チケット購入」だけ表示 */
+  .ticket_offer.mini .box-today {
+    display: none; /* 開館時間の部分を非表示 */
+  }
+  @media(max-width:766px) {
+    .ticket_offer {
+      display: flex;
+      justify-content: center;
+      width: calc(100% - (20px * 2));
+      height: 50px;
+      padding: 5px 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      right: auto;
+    }
+    .box-ticket p {
+      font-size: 1.10rem;
+    }
+    .box-ticket img {
+      width: 35px;
+    }
+    .separator img {
+      height: 40px;
+      object-fit: cover;
+    }
+    .title, .time {
+      font-size: 0.85rem;
+    }
+    .memo {
+      display: none;
+    }
+
+    /* 引っ込んだとき */
+    .mini .ticket_offer {
+      position: relative;
+    }
+    .mini .inner {
+      position: absolute;
+      left: 5%;
+      top: 0;
+      bottom: 0;
+      justify-content: flex-start;
+    }
+  }
+
+  /* フッター */
+  #footer {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 50px;
+    width: 100%;
+    background: #5F4239;
+  }
+  .footer_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .footer_container-inner {
+    display: flex;
+    font-family: "Noto Serif JP";
+    font-weight: 100;
+    font-size: 1.10rem;
+  }
+  .footer_contents {
+    display: flex;
+    margin: 0 auto;
+  }
+  .footer_nav-list-blk {
+    display: flex;
+    flex-wrap: wrap; /* ← ここ追加！折り返しOKにする */
+  }
+  .footer_address {
+    padding-top: 40px;
+    font-style: normal;
+    letter-spacing: 0.12em;
+    color: #fff;
+    line-height: 1.6;
+  }
+  .footer_address span::before {
+    content: "";
+    display: block;
+    margin-top: 15px;
+  }
+  .line-spacing {
+    display: block;
+    margin-top: 10px;
+  }
+  .footer_nav {
+    display: flex;
+    margin: 0 auto;
+  }
+  .footer_nav-list01, .footer_nav-list02 {
+    margin: 0 50px;
+    width: auto;
+  }
+  .footer_nav-item {
+    padding-bottom: 20px;
+    color: #fff;
+    letter-spacing: 0.12em;
+  }
+  .footer_nav-item a {
+    color: #fff;
+  }
+  .footer_right-block {
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+  }
+  .footer_right-block span {
+    color: #FFFFFF;
+  }
+  .footer_sns {
+    margin-top: 100px;
+  }
+  .footer_sns-list {
+    display: flex;
+    padding-top: 20px;
+    gap: 30px;
+  }
+  .footer_line {
+    display: block;
+    background: #FFFFFF;
+    width: auto;
+    height: 1px;
+    margin: 10px 0;
+  }
+  .access {
+    padding: 10px 20px;
+  }
+  .footer_sns span {
+    color: #fff;
+    letter-spacing: 0.12em;
+  }
+  .footer_txt {
+    margin: auto;
+  }
+  .footer_txt a {
+    font-size: 0.75rem;
+    padding: 10px;
+    color: #fff;
+  }
+  .footer_copyright {
+    font-size: 0.75rem;
+    margin: 10px auto 20px auto;
+    color: #fff;
+  }
+  .footer_container,
+  .footer_container-inner,
+  .footer_contents,
+  .footer_nav,
+  .footer_nav-list-blk,
+  .footer_sns-list,
+  .footer_right-block {
+    display: -webkit-box;
+    display: -webkit-flex;
+  }
+  .footer_container-inner {
+    -webkit-flex-direction: row;
+            flex-direction: row;
+  }
+  .footer_nav-list-blk {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-flex-direction: row;
+            flex-direction: row;
+  }
+  @media(max-width:766px) {
+    .footer_container-inner {
+      flex-direction: column;
+      margin: 0 auto;
+    }
+    .footer_information img {
+      width: 170px;
+    }
+    .footer_contents {
+      display: flex;
+      margin-top: 40px;
+    }
+    .footer_nav-list-blk {
+      flex-direction: column;
+    }
+    .footer_nav {
+      margin: 0;
+    }
+    .footer_nav-list01, .footer_nav-list02 {
+      margin: 0;
+    }
+    .footer_nav-item {
+      padding: 20px 0;
+    }
+    .footer_right-block {
+      margin-left: 30px;
+    }
+    .footer_sns {
+      margin-top: 30px;
+    }
+    .footer_container-inner {
+      -webkit-flex-direction: column; /* メディアクエリの中では改めてcolumnに */
+              flex-direction: column;
+      margin: 0 auto;
+    }
+  }
